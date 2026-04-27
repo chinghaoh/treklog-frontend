@@ -41,10 +41,10 @@ function Dashboard() {
   }
 
   const statCards = [
-    { label: 'Countries visited', value: stats.visited, tag: 'Visited', color: 'text-green-600 dark:text-green-400' },
-    { label: 'Want to visit', value: stats.want_to_visit, tag: 'Bucket list', color: 'text-amber-500 dark:text-amber-400' },
-    { label: 'Total items logged', value: stats.total_items, tag: 'Landmarks & food', color: 'text-blue-600 dark:text-blue-400' },
-    { label: 'Items done', value: stats.items_done, tag: `${stats.total_items ? Math.round((stats.items_done / stats.total_items) * 100) : 0}% complete`, color: 'text-gray-500 dark:text-gray-400' },
+    { label: 'Countries visited', value: stats.visited, tag: 'Visited', color: theme.tw.statVisited },
+    { label: 'Want to visit', value: stats.want_to_visit, tag: 'Bucket list', color: theme.tw.statWant },
+    { label: 'Total items logged', value: stats.total_items, tag: 'Landmarks & food', color: theme.tw.statItems },
+    { label: 'Items done', value: stats.items_done, tag: `${stats.total_items ? Math.round((stats.items_done / stats.total_items) * 100) : 0}% complete`, color: theme.tw.statDone },
   ]
 
   return (
@@ -75,7 +75,7 @@ function Dashboard() {
       {/* World map */}
       <div className={`${theme.tw.surface} ${theme.tw.border} rounded-xl p-3`}>
         <p className={`text-sm font-medium ${theme.tw.textMain} mb-2`}>World map</p>
-        <div className="rounded-lg overflow-hidden bg-[#e8e8e8]" style={{ height: '240px' }}>
+        <div className={`rounded-lg overflow-hidden`} style={{ height: '240px', backgroundColor: theme.colors.map.background }}>
         <MapContainer
           center={[54, 15]}
           zoom={3}
@@ -97,13 +97,13 @@ function Dashboard() {
         </div>
         <div className="flex gap-4 mt-2 justify-center">
           <span className={`flex items-center gap-1.5 text-xs ${theme.tw.textMuted}`}>
-            <span className="w-2 h-2 rounded-sm bg-green-600 inline-block"></span>Visited
+            <span className="w-2 h-2 rounded-sm inline-block" style={{ background: theme.colors.legend.visited }}></span>Visited
           </span>
           <span className={`flex items-center gap-1.5 text-xs ${theme.tw.textMuted}`}>
-            <span className="w-2 h-2 rounded-sm bg-amber-500 inline-block"></span>Want to visit
+            <span className="w-2 h-2 rounded-sm inline-block" style={{ background: theme.colors.legend.wantToVisit }}></span>Want to visit
           </span>
           <span className={`flex items-center gap-1.5 text-xs ${theme.tw.textMuted}`}>
-            <span className="w-2 h-2 rounded-sm bg-blue-500 inline-block"></span>Living there
+            <span className="w-2 h-2 rounded-sm inline-block" style={{ background: theme.colors.legend.livingThere }}></span>Living there
           </span>
         </div>
       </div>
@@ -144,7 +144,7 @@ function Dashboard() {
           <div className="flex flex-col gap-1.5">
           {recentItems.slice(0, 5).map((item) => (
               <div key={item.id} className="flex items-center gap-2">
-              <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.is_done ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}></span>
+              <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.is_done ? theme.tw.dotDone : theme.tw.dotPending}`}></span>
               <span className={`text-sm flex-1 ${theme.tw.textMain}`}>{item.name}</span>
               <span className={`text-xs ${theme.tw.textMuted}`}>{item.category}</span>
             </div>
