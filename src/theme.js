@@ -36,6 +36,12 @@ export const theme = {
       wantToVisit: '#f59e0b',
       livingThere: '#3b82f6',
     },
+
+    mapStatus: {
+      visited:     '#16a34a',
+      wantToVisit: '#f59e0b',
+      livingThere: '#3b82f6',
+    },
   },
 
   tw: {
@@ -83,6 +89,7 @@ export const theme = {
     card:        'bg-gray-50 dark:bg-[#242424] border border-gray-100 dark:border-gray-800 rounded-xl',
     cardInner:   'bg-white dark:bg-[#1a1a1a]',
     cardHover:   'hover:bg-gray-100 dark:hover:bg-[#2e2e2e]',
+    cardBorder: 'border border-gray-200 dark:border-gray-700',
 
     // status dots
     dotDone:    'bg-green-500',
@@ -97,5 +104,9 @@ export const theme = {
     statWant:     'text-amber-500 dark:text-amber-400',
     statItems:    'text-blue-600 dark:text-blue-400',
     statDone:     'text-gray-500 dark:text-gray-400',
+
+    checkboxEmpty:   'border-2 border-gray-400 dark:border-gray-500',
+    checkboxChecked: 'bg-teal-500 border-2 border-teal-500',
+
   },
 }

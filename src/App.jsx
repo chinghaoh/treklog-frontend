@@ -3,9 +3,11 @@ import Sidebar from './components/Sidebar'
 import Home from './pages/Home'
 import Countries from './pages/Countries'
 import MyCountries from './pages/MyCountries'
-import CountryDetail from './pages/CountryDetail'
+import CountryDetail from './pages/country-detail/CountryDetail'
 import Dashboard from './pages/Dashboard'
 import WorldMap from './pages/WorldMap'
+import MyItems from './pages/MyItems'
+
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/countries" element={<Countries />} />
           <Route path="/my-countries" element={<MyCountries />} />
-          <Route path="/my-countries/:id" element={<CountryDetail />} />
+          <Route path="/my-countries/:id/:tab?" element={<CountryDetail />} />
+          <Route path="/my-items" element={<MyItems />} />
           <Route path="/map" element={<WorldMap />} />
         </Routes>
       </main>

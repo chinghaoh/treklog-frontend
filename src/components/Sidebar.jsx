@@ -6,6 +6,7 @@ const navItems = [
     { path: '/', label: 'Dashboard' },
     { path: '/my-countries', label: 'My Countries' },
     { path: '/countries', label: 'Browse Countries' },
+    { path: '/my-items', label: 'My Items' },
     { path: '/map', label: 'World Map' },
 ]
 
