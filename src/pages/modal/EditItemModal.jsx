@@ -11,16 +11,15 @@ const CATEGORIES = [
   { key: 'other', label: 'Other' },
 ]
 
-function AddItemModal({ entry, onClose, onRefresh, defaultRegionId = null }) {
-  const [name, setName] = useState('')
-  const [category, setCategory] = useState('landmark')
-  const [regionId, setRegionId] = useState(defaultRegionId)
+function EditItemModal({ item, regions, onClose, onRefresh }) {
+  const [name, setName] = useState(item.name)
+  const [category, setCategory] = useState(item.category)
+  const [regionId, setRegionId] = useState(item.region || '')
   const [saving, setSaving] = useState(false)
 
   const handleSubmit = () => {
-    if (!name.trim()) return
     setSaving(true)
-    client.post(`/my-countries/${entry.id}/items/`, {
+    client.patch(`/items/${item.id}/`, {
       name,
       category,
       region: regionId || null
@@ -38,23 +37,21 @@ function AddItemModal({ entry, onClose, onRefresh, defaultRegionId = null }) {
 
         {/* Header */}
         <div className={`flex items-center justify-between px-5 py-4 border-b ${theme.tw.borderDivider}`}>
-          <div>
-            <p className={`text-sm font-semibold ${theme.tw.textMain}`}>Add item</p>
-            <p className={`text-xs ${theme.tw.textMuted} mt-0.5`}>Adding item to {entry.country.name}</p>
-          </div>
+          <p className={`text-sm font-semibold ${theme.tw.textMain}`}>Edit item</p>
           <button onClick={onClose} className={`text-lg ${theme.tw.textMuted}`}>×</button>
         </div>
 
         {/* Body */}
         <div className="px-5 py-4 flex flex-col gap-4">
 
+        
           {/* Name */}
           <div>
             <p className={`text-xs font-semibold ${theme.tw.textMain} mb-1.5`}>Name</p>
             <input
               value={name}
               onChange={e => setName(e.target.value)}
-              className={`w-full text-sm px-3 py-2 rounded-lg ${theme.tw.surfaceSunk} ${theme.tw.textMain} border ${theme.tw.borderDivider} focus:outline-none focus:ring-2 focus:ring-teal-500 placeholder-gray-400`}
+              className={`w-full text-sm px-3 py-2 rounded-lg ${theme.tw.surfaceSunk} ${theme.tw.textMain} border ${theme.tw.borderDivider} focus:outline-none focus:ring-2 focus:ring-teal-500`}
             />
           </div>
 
@@ -77,21 +74,23 @@ function AddItemModal({ entry, onClose, onRefresh, defaultRegionId = null }) {
           </div>
 
           {/* Region */}
-          <div>
-            <p className={`text-xs font-semibold ${theme.tw.textMain} mb-1.5`}>
-              Region <span className={`text-xs font-normal ${theme.tw.textMuted}`}>— optional</span>
-            </p>
-            <select
-              value={regionId || ''}
-              onChange={e => setRegionId(e.target.value || null)}
-              className={`w-full text-sm px-3 py-2 rounded-lg ${theme.tw.surfaceSunk} ${theme.tw.textMain} border ${theme.tw.borderDivider} focus:outline-none focus:ring-2 focus:ring-teal-500`}
-            >
-              <option value="">No region</option>
-              {entry.regions.map(r => (
-                <option key={r.id} value={r.id}>{r.name}</option>
-              ))}
-            </select>
-          </div>
+          {regions && regions.length > 0 && (
+            <div>
+              <p className={`text-xs font-semibold ${theme.tw.textMain} mb-1.5`}>
+                Region <span className={`text-xs font-normal ${theme.tw.textMuted}`}>— optional</span>
+              </p>
+              <select
+                value={regionId}
+                onChange={e => setRegionId(e.target.value)}
+                className={`w-full text-sm px-3 py-2 rounded-lg ${theme.tw.surfaceSunk} ${theme.tw.textMain} border ${theme.tw.borderDivider} focus:outline-none focus:ring-2 focus:ring-teal-500`}
+              >
+                <option value="">No region</option>
+                {regions.map(r => (
+                  <option key={r.id} value={r.id}>{r.name}</option>
+                ))}
+              </select>
+            </div>
+          )}
 
         </div>
 
@@ -105,7 +104,7 @@ function AddItemModal({ entry, onClose, onRefresh, defaultRegionId = null }) {
             disabled={!name.trim() || saving}
             className={`text-sm px-4 py-2 rounded-lg ${theme.tw.primaryBg} ${theme.tw.primaryHover} text-white transition-colors ${!name.trim() || saving ? theme.tw.btnDisabled : ''}`}
           >
-            {saving ? 'Adding...' : 'Add item'}
+            {saving ? 'Saving...' : 'Save'}
           </button>
         </div>
 
@@ -114,4 +113,4 @@ function AddItemModal({ entry, onClose, onRefresh, defaultRegionId = null }) {
   )
 }
 
-export default AddItemModal
+export default EditItemModal

@@ -147,7 +147,7 @@ function MyItems() {
             return (
                 <div 
                     key={i.id} 
-                    onClick={() => navigate(`/my-countries/${i.country_entry_id}/overview`)}
+                    onClick={() => navigate(`/my-countries/${i.country_entry_id}/items`)}
                     className={`grid grid-cols-[20px_1fr_100px_130px_100px_80px] gap-3 px-4 py-3 border-b ${theme.tw.borderDivider} last:border-0 items-center cursor-pointer ${theme.tw.cardHover}`}
                     >
                 <div
