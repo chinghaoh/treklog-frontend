@@ -97,7 +97,7 @@ function AddItemModal({ entry, onClose, onRefresh, defaultRegionId = null }) {
 
         {/* Footer */}
         <div className={`flex justify-end gap-2 px-5 py-4 border-t ${theme.tw.borderDivider}`}>
-          <button onClick={onClose} className={`text-sm px-4 py-2 rounded-lg border ${theme.tw.borderDivider} ${theme.tw.textMuted}`}>
+          <button onClick={onClose} className={`text-sm px-4 py-2 rounded-lg border  ${theme.tw.surfaceSunk} ${theme.tw.borderDivider} ${theme.tw.textMuted}`}>
             Cancel
           </button>
           <button

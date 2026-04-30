@@ -34,7 +34,8 @@ export const theme = {
     legend: {
       visited:     '#16a34a',
       wantToVisit: '#f59e0b',
-      livingThere: '#3b82f6',
+      untracked:   '#888780',
+
     },
 
     mapStatus: {
